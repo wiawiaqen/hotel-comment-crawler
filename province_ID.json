@@ -1,0 +1,254 @@
+[   
+    {
+        "id": 17162 , 
+        "name": "An Giang"
+    },
+    {
+        "id": 17190 , 
+        "name": "Vũng Tàu"
+    },
+    {
+        "id": 204053 ,
+        "name": "Bắc Giang"
+    },
+    {
+        "id": 720974 ,
+        "name": "Bắc Kạn"
+    },
+    {
+        "id": 204055 ,
+        "name": "Bạc Liêu"
+    },
+    {
+        "id": 115625 ,
+        "name": "Bắc Ninh"
+    },
+    {
+        "id": 204056 ,
+        "name": "Bến Tre"
+    },
+    {
+        "id": 17242 ,
+        "name": "Bình Định"
+    },
+    {
+        "id": 115678 ,
+        "name": "Bình Dương"
+    },
+    {
+        "id": 728004 ,
+        "name": "Bình Phước"
+    },
+    {
+        "id": 16264 ,
+        "name": "Bình Thuận"
+    },
+    {
+        "id": 115629 ,
+        "name": "Cà Mau"
+    },
+    {
+        "id": 16079 ,
+        "name": "Cần Thơ"
+    },
+    {
+        "id": 204057 ,
+        "name": "Cao Bằng"
+    },
+    {
+        "id": 16440 ,
+        "name": "Đà Nẵng"
+    },
+    {
+        "id": 19603 ,
+        "name": "Đắk Lắk"
+    },
+    {
+        "id": 204058 ,
+        "name": "Đắk Nông"
+    },
+    {
+        "id": 19657 ,
+        "name": "Điện Biên"
+    },
+    {
+        "id": 105991 ,
+        "name": "Đồng Nai"
+    },
+    {
+        "id": 204059 ,
+        "name": "Đồng Tháp"
+    },
+    {
+        "id": 78906 ,
+        "name": "Gia Lai"
+    },
+    {
+        "id": 204060 ,
+        "name": "Hà Giang"
+    },
+    {
+        "id": 204061 ,
+        "name": "Hà Nam"
+    },
+    {
+        "id": 232772 ,
+        "name": "Hà Tĩnh"
+    },
+    {
+        "id": 115635 ,
+        "name": "Hải Dương"
+    },
+    {
+        "id": 17161 ,
+        "name": "Hải Phòng"
+    },
+    {
+        "id": 222541 ,
+        "name": "Hậu Giang"
+    },
+    {
+        "id": 226263 ,
+        "name": "Hòa Bình"
+    },
+    {
+        "id": 115651 ,
+        "name": "Hưng Yên"
+    },
+    {
+        "id": 2679 ,
+        "name": "Khánh Hòa"
+    },
+    {
+        "id": 17188 ,
+        "name": "Kiên Giang"
+    },
+    {
+        "id": 204063 ,
+        "name": "Kon Tum"
+    },
+    {
+        "id": 18867 ,
+        "name": "Lai Châu"
+    },
+    {
+        "id": 15932 ,
+        "name": "Lâm Đồng"
+    },
+    {
+        "id": 204064 ,
+        "name": "Lạng Sơn"
+    },
+    {
+        "id": 17160 ,
+        "name": "Lào Cai"
+    },
+    {
+        "id": 115657 ,
+        "name": "Long An"
+    },
+    {
+        "id": 204065 ,
+        "name": "Nam Định"
+    },
+    {
+        "id": 21501 ,
+        "name": "Nghệ An"
+    },
+    {
+        "id": 17245 ,
+        "name": "Ninh Bình"
+    },
+    {
+        "id": 21557 ,
+        "name": "Ninh Thuận"
+    },
+    {
+        "id": 215124 ,
+        "name": "Phú Thọ"
+    },
+    {
+        "id": 78908 ,
+        "name": "Phú Yên"
+    },
+    {
+        "id": 18866 ,
+        "name": "Quảng Bình"
+    },
+    {
+        "id": 17182 ,
+        "name": "Quảng Nam"
+    },
+    {
+        "id": 106067 ,
+        "name": "Quảng Ngãi"
+    },
+    {
+        "id": 17182 ,
+        "name": "Quảng Ninh"
+    },
+    {
+        "id": 204067 ,
+        "name": "Quảng Trị"
+    },
+    {
+        "id": 115748 ,
+        "name": "Sóc Trăng"
+    },
+    {
+        "id": 226464 ,
+        "name": "Sơn La"
+    },
+    {
+        "id": 115751 ,
+        "name": "Tây Ninh"
+    },
+    {
+        "id": 115753 ,
+        "name": "Thái Bình"
+    },
+    {
+        "id": 115754 ,
+        "name": "Thái Nguyên"
+    },
+    {
+        "id": 105661 ,
+        "name": "Thanh Hóa"
+    },
+    {
+        "id": 3738 ,
+        "name": "Thừa Thiên Huế"
+    },
+    {
+        "id": 214967 ,
+        "name": "Tiền Giang"
+    },
+    {
+        "id": 204070 ,
+        "name": "Trà Vinh"
+    },
+    {
+        "id": 204071 ,
+        "name": "Tuyên Quang"
+    },
+    {
+        "id": 115734 ,
+        "name": "Vĩnh Long"
+    },
+    {
+        "id": 115740 ,
+        "name": "Vĩnh Phúc"
+    },
+    {
+        "id": 226502 ,
+        "name": "Yên Bái"
+    },
+    {
+        "id": 13170 ,
+        "name": "TP.Hồ Chí Minh"
+    },
+    {
+        "id": 2758, 
+        "name": "Hà Nội"
+    }
+]
