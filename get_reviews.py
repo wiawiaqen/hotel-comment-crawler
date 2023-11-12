@@ -19,23 +19,65 @@ headers = {
     "sec-fetch-site": "same-origin",
     "x-requested-with": "XMLHttpRequest",
     "accept": "application/json",
-    'sec-ch-ua-mobile':'?0',
+    "sec-ch-ua-mobile": "?0",
 }
 
- 
 
-async def get_page(session, hotel_ID, offset, URL=url, HEADERS=headers):
-    payload = {"hotelId":hotel_ID,"providerId":332,"demographicId":0,"page":offset//20+1,"pageSize":20,"sorting":7,"providerIds":[332],"isReviewPage":False,"isCrawlablePage":True,"filters":{"language":[24],"room":[]},"searchKeyword":"","searchFilters":[]}
+async def get_page(
+    session: aiohttp.ClientSession,
+    hotel_ID: int,
+    offset: int,
+    URL: str = url,
+    HEADERS: dict = headers,
+) -> dict:
+    """
+    Get data from hotel page offset of hotel_ID
+
+    Args:
+        session (aiohttp.ClientSession): aiohttp session
+        hotel_ID (int): hotel ID
+        offset (int): hotel page offset
+        URL (str, optional): url. Defaults to url.
+        HEADERS (dict, optional): headers. Defaults to headers.
+
+    Returns:
+        dict: data
+    """
+    payload = {
+        "hotelId": hotel_ID,
+        "providerId": 332,
+        "demographicId": 0,
+        "page": offset // 20 + 1,
+        "pageSize": 20,
+        "sorting": 7,
+        "providerIds": [332],
+        "isReviewPage": False,
+        "isCrawlablePage": True,
+        "filters": {"language": [24], "room": []},
+        "searchKeyword": "",
+        "searchFilters": [],
+    }
     try:
-        async with session.request("POST",URL, headers=HEADERS, json=payload) as response:
+        async with session.request(
+            "POST", URL, headers=HEADERS, json=payload
+        ) as response:
             data = await response.json()
             return data
     except:
         pass
 
 
-async def get_all(session):
-    global local_dir,province
+async def get_all(session: aiohttp.ClientSession) -> list[asyncio.Task]:
+    """
+    get all data from hotel
+
+    Args:
+        session (aiohttp.ClientSession): aiohttp session
+
+    Returns:
+        list[asyncio.Task]: list of task
+    """
+    global local_dir, province
     tasks = []
     # get all json file in folder Hotel
     files = os.listdir(local_dir)
@@ -47,10 +89,10 @@ async def get_all(session):
             with open(f"./Hotel/{province}/{file}", "r", encoding="utf-8") as f:
                 data = json.load(f)
                 for object in data:
-                    if object['total_reviews'] == 0:
+                    if object["total_reviews"] == 0:
                         continue
-                    total_review = range(0, object['total_reviews'], 20)
-                    id = object['id']
+                    total_review = range(0, object["total_reviews"], 20)
+                    id = object["id"]
                     for i in total_review:
                         tasks.append(asyncio.create_task(get_page(session, id, i)))
                 res = await asyncio.gather(*tasks)
@@ -58,70 +100,79 @@ async def get_all(session):
         except Exception as e:
             print(e)
 
-def get_all_usable_data_from_response(response):
+
+def get_all_usable_data_from_response(response: dict):
+    """
+    Extract usable data from response
+
+    Args:
+        response (dict): response
+    """
     lst = []
     try:
-        usable_data = response['comments']
+        usable_data = response["comments"]
     except:
         return []
     for item in usable_data:
         review = {}
         try:
-            review['reviewer_name'] = item['reviewerInfo']['displayMemberName']
+            review["reviewer_name"] = item["reviewerInfo"]["displayMemberName"]
         except:
-            review['reviewer_name'] = None 
+            review["reviewer_name"] = None
         try:
-            review['reviewer_country'] = item['reviewerInfo']['countryName']
+            review["reviewer_country"] = item["reviewerInfo"]["countryName"]
         except:
-            review['reviewer_country'] = None 
+            review["reviewer_country"] = None
         try:
-            review['language'] = item['responseTranslateSource']
+            review["language"] = item["responseTranslateSource"]
         except:
-            review['language'] = None 
+            review["language"] = None
         try:
-            review['stay_length'] = item['reviewerInfo']['lengthOfStay']
+            review["stay_length"] = item["reviewerInfo"]["lengthOfStay"]
         except:
-            review['stay_length'] = None
+            review["stay_length"] = None
         try:
-            review['review_date'] = item['formattedReviewDate']
+            review["review_date"] = item["formattedReviewDate"]
         except:
-            review['review_date'] = None
+            review["review_date"] = None
         try:
-            review['groupName'] = item['reviewerInfo']['reviewGroupName']
+            review["groupName"] = item["reviewerInfo"]["reviewGroupName"]
         except:
-            review['groupName'] = None
+            review["groupName"] = None
         try:
-            review['typeName'] = item['reviewerInfo']['roomTypeName']
+            review["typeName"] = item["reviewerInfo"]["roomTypeName"]
         except:
-            review['typeName'] = None
+            review["typeName"] = None
         try:
-            review['rating'] = item['rating']
+            review["rating"] = item["rating"]
         except:
-            review['rating'] = None
+            review["rating"] = None
         try:
-            review['rating_text'] = item['ratingText']
+            review["rating_text"] = item["ratingText"]
         except:
-            review['rating_text'] = None
+            review["rating_text"] = None
         try:
-            review['review_title'] = item['reviewTitle']
+            review["review_title"] = item["reviewTitle"]
         except:
-            review['review_title'] = None
+            review["review_title"] = None
         try:
-            review['review_comments'] = item['reviewComments']
+            review["review_comments"] = item["reviewComments"]
         except:
-            review['review_comments'] = None
+            review["review_comments"] = None
         try:
-            review['review_positive_comments'] = item['reviewPositives']
+            review["review_positive_comments"] = item["reviewPositives"]
         except:
-            review['review_positive_comments'] = None
+            review["review_positive_comments"] = None
         try:
-            review['review_negative_comments'] = item['reviewNegatives']
+            review["review_negative_comments"] = item["reviewNegatives"]
         except:
-            review['review_negative_comments'] = None
+            review["review_negative_comments"] = None
         lst.append(review)
 
-    global i,local_dir_for_data, no
-    with open(f'{local_dir_for_data}/data_page{no}.json', "w", encoding="utf-8") as file:
+    global i, local_dir_for_data, no
+    with open(
+        f"{local_dir_for_data}/data_page{no}.json", "w", encoding="utf-8"
+    ) as file:
         if lst != []:
             json.dump(lst, file, indent=4, ensure_ascii=False)
             no += 1
@@ -139,14 +190,14 @@ async def main():
             return
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     start = time.time()
     files = os.listdir("./Hotel")
     for i in range(0, len(files)):
         dir_start = time.time()
         no = 0
         local_dir = f"./Hotel/{files[i]}"
-        province = files[i].split('/')[-1]
+        province = files[i].split("/")[-1]
         local_dir_for_data = f"./Data/{province}"
         if not os.path.exists(local_dir_for_data):
             os.makedirs(local_dir_for_data)
