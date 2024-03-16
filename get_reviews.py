@@ -44,7 +44,7 @@ async def get_page(
         dict: data
     """
     payload = {
-        "hotelId": hotel_ID,
+        "hotelId": str(hotel_ID),
         "providerId": 332,
         "demographicId": 0,
         "page": offset // 20 + 1,
@@ -62,6 +62,7 @@ async def get_page(
             "POST", URL, headers=HEADERS, json=payload
         ) as response:
             data = await response.json()
+            print(data)
             return data
     except:
         pass
@@ -180,13 +181,14 @@ def get_all_usable_data_from_response(response: dict):
 
 
 async def main():
-    async with aiohttp.ClientSession() as session:
+    connector = aiohttp.TCPConnector(limit=30)
+    async with aiohttp.ClientSession(connector=connector) as session:
         res = await get_all(session)
         try:
             for i in res:
                 get_all_usable_data_from_response(i)
             return res
-        except:
+        except Exception as e:
             return
 
 

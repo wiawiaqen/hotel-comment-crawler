@@ -22,6 +22,7 @@ def main():
         review_province = []
         group_name = []
         type_name = []
+        print(files)
         for file in files:
             try:
                 with open(f"./Data/{province}/{file}", "r", encoding="utf-8") as f:
@@ -63,12 +64,13 @@ def main():
         }
         df = pd.DataFrame(data)
         df.to_excel(
-            f"./Data/Agoda_{province}.xlsx",
+            f"./grouped/Agoda_{province}.xlsx",
             index=False,
-            encoding="utf-8",
             engine="xlsxwriter",
         )
 
 
 if __name__ == "__main__":
+    if not os.path.exists("./grouped"):
+        os.makedirs("./grouped")
     main()

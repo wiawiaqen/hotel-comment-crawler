@@ -33,7 +33,7 @@ async def get_data(
         "sec-fetch-site": "same-origin",
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.54",
     }
-    global today_time, oneweek_later
+    global today_time, oneweek_later, twoday_checkout
     payload = {
         "operationName": "citySearch",
         "variables": {
@@ -167,24 +167,6 @@ async def get_data(
                     },
                     "apoRequest": {"apoPageSize": 10},
                     "searchHistory": [
-                        {
-                            "objectId": 16260062,
-                            "searchDate": "2023-2-2",
-                            "searchType": "PropertySearch",
-                            "childrenAges": [],
-                        },
-                        {
-                            "objectId": 16260062,
-                            "searchDate": "2023-2-3",
-                            "searchType": "PropertySearch",
-                            "childrenAges": [],
-                        },
-                        {
-                            "objectId": 16260062,
-                            "searchDate": "2023-3-5",
-                            "searchType": "PropertySearch",
-                            "childrenAges": [],
-                        },
                     ],
                     "searchDetailRequest": {"priceHistogramBins": 50},
                     "isTrimmedResponseRequested": False,
@@ -219,10 +201,6 @@ async def get_data(
                     },
                     "packaging": None,
                     "flexibleSearchRequest": {
-                        "fromDate": "2023-03-19",
-                        "toDate": "2023-04-27",
-                        "alternativeDateSize": 4,
-                        "isFullFlexibleDateSearch": False,
                     },
                     "rankingRequest": {
                         "isNhaKeywordSearch": False,
@@ -358,11 +336,11 @@ async def get_data(
                 "isSSR": True,
                 "roomSortingStrategy": None,
                 "pricing": {
-                    "bookingDate": "2023-03-19T07:47:03.867Z",
-                    "checkIn": "2023-03-28T07:47:02.895Z",
-                    "checkout": "2023-03-29T07:47:02.895Z",
-                    "localCheckInDate": "2023-03-28",
-                    "localCheckoutDate": "2023-03-29",
+                    "bookingDate": f"{today_time}T07:47:03.883Z",
+                    "checkIn": f"{oneweek_later}T07:47:02.895Z",
+                    "checkout": f"{twoday_checkout}T07:47:02.895Z",
+                    "localCheckInDate": f"{oneweek_later}T07:47:02.895Z",
+                    "localCheckoutDate":  f"{twoday_checkout}T07:47:02.895Z",
                     "currency": "VND",
                     "details": {
                         "cheapestPriceOnly": False,
@@ -564,4 +542,5 @@ def main_function():
 if __name__ == "__main__":
     today_time = datetime.date.today()
     oneweek_later = today_time + datetime.timedelta(days=7)
+    twoday_checkout = today_time + datetime.timedelta(days=9)
     main_function()
